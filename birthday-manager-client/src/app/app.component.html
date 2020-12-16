@@ -1,13 +1,20 @@
-<h1>Birthday Manager</h1>
+<style>
+h1   {color: rgb(255, 94, 0);}
+hr {color: red;}
+</style>
+  <h1>Birthday Manager</h1>
+<hr>
+<div>
+  <h2>Add new Person:</h2>
+  firstname: <input type="text" #firstname/>    lastname: <input type="text" #lastname/> birthday: <input type="date" #birthday> address: <input type="text" #address>
+  <button (click)="onAdd(firstname.value, lastname.value, address.value, birthday.value)">Add</button>
+</div>
+<hr>
+<div>
+  <app-person-detail [persons]="persons"></app-person-detail>
+</div>
 
-<table>
-   <td>First Name</td> <td>Last Name</td>
-   <ng-container *ngFor="let person of persons">
-     <ng-container>
-       <tr>
-        <td>{{person.firstname}}</td>
-        <td>{{person.lastname}}</td>
-       </tr>
-     </ng-container>
-   </ng-container>
-</table>
+
+
+
+

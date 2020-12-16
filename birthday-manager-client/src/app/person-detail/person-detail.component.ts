@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatMenuTrigger } from '@angular/material/menu';
+import { MatTableDataSource } from '@angular/material/table';
 import {Person} from 'src/app/person';
 @Component({
   selector: 'app-person-detail',
@@ -6,11 +8,15 @@ import {Person} from 'src/app/person';
   styleUrls: ['./person-detail.component.css']
 })
 export class PersonDetailComponent implements OnInit {
+  menuTopLeftPosition =  {x: '0', y: '0'}
   @Input()
-  person!: Person;
+  persons!: Array<Person>;
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  
+  onDelete(index: number) {
+    this.persons.splice(index, 1);
+  }
 }

@@ -1,0 +1,33 @@
+GET http://localhost:8080/person/message
+###
+GET http://localhost:8080/person/init
+###
+GET http://localhost:8080/person/findAll
+###
+GET http://localhost:8080/person/find/1
+###
+DELETE http://localhost:8080/person/delete/1
+###
+POST http://localhost:8080/person/create
+Content-Type: application/json
+
+{
+  "address": "Austria",
+  "birthday": "2002-11-23",
+  "firstname": "Robert",
+  "lastname": "Freiseisen"
+}
+###
+PUT http://localhost:8080/person/update
+Content-Type: application/json
+
+{
+  "id": 2,
+  "address": "Austria",
+  "birthday": "2002-11-23",
+  "firstname": "Tom",
+  "lastname": "Freiseisen"
+}
+###
+DELETE http://localhost:8080/person/deleteAll
+
