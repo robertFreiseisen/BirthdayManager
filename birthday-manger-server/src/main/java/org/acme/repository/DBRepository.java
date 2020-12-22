@@ -34,18 +34,19 @@ public class DBRepository {
 
     // Einfügen einer neuen Person in die DB
     @Transactional
-    public Person create(Person person) {
+    public List<Person> create(Person person) {
         person.setId(null);
         em.persist(person);
-        return person;
+        return this.findAll();
     }
 
     // Löschen einer Person
     @Transactional
-    public Person delete(int id){
+    public List<Person> delete(int id){
         Person person = this.find(id);
         em.remove(person);
-        return person;
+
+        return this.findAll();
     }
 
     public List<Person> deleteAll(){
@@ -59,8 +60,8 @@ public class DBRepository {
     }
 
     @Transactional
-    public Person update(Person person){
+    public List<Person> update(Person person){
         em.merge(person);
-        return person;
+        return this.findAll();
     }
 }

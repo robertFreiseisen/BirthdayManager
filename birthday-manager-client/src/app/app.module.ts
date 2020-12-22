@@ -1,24 +1,34 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog/dialog';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatTableModule} from '@angular/material/table';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import  {MatSortModule} from '@angular/material/sort';
 import { AppComponent } from './app.component';
-import { PersonDetailComponent } from './person-detail/person-detail.component';
+import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
+import { MatDialogClose, MatDialogContent } from '@angular/material/dialog/dialog-content-directives';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormField } from '@angular/material/form-field';
+import { PersonService } from './person-service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PersonDetailComponent
+    UpdateDialogComponent
   ],
+  entryComponents: [UpdateDialogComponent],
   imports: [
     BrowserModule,
     MatTableModule,
-    MatSortModule
-
+    MatSortModule,
+    MatDialogModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [PersonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

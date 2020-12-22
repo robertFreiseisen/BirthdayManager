@@ -8,22 +8,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class PersonService {
 
-  http: HttpClient;
-  public persons: any;
+  http: HttpClient; 
+  public persons: Person[] = [];
   url: string = 'http://localhost:8080/person';
 
   constructor(http: HttpClient) {
     this.http = http;
   }
 
-  // GET-Request: Liefert Response als Observable
   findAll(): void {
     this.http.get<Person[]>(this.url + '/findAll').subscribe(data => this.persons = data);
+    console.log(this.persons);
   }
 
   addPerson(person:Person): void {
-    this.persons.push(person);
-    const body = JSON.stringify(this.persons);
+    const body = JSON.stringify(person);
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -32,7 +31,7 @@ export class PersonService {
     const options = {
       headers: headers
     }
-    this.http.post<Person>(this.url + ('/add'), body, options).subscribe(data => this.persons = data);
+    this.http.post<Person[]>(this.url + ('/create'), body, options).subscribe(data => this.persons = data);
   }
 
   delete(id : number):void{
@@ -44,7 +43,19 @@ export class PersonService {
       headers: headers
     }
 
-    this.http.delete<Person>(this.url + '/delete/' + id, options).subscribe(data => this.persons = data);
+    this.http.delete<Person[]>(this.url + '/delete/' + id, options).subscribe(data => this.persons = data);
+  }
+
+  update(person: Person):void{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    const body = JSON.stringify(person);
+    const options = {
+      headers: headers
+    }
+
+    this.http.put<Person[]>(this.url + '/update', body, options).subscribe(data => this.persons = data);
   }
 
 }

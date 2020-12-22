@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Update Person</h2>
+
+<mat-dialog-content>
+    <h2>Add new Person:</h2>
+    firstname: <input type="text" value={{data.firstname}} #firstname/>    lastname: <input type="text" value={{data.lastname}} #lastname> address: <input type="text" value={{data.address}} #address>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary"(click)="save(firstname.value, lastname.value, address.value)">Save</button>
+</mat-dialog-actions>

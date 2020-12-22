@@ -1,18 +1,69 @@
 <style>
 h1   {color: rgb(255, 94, 0);}
 hr {color: red;}
+.doc {background-color: white;}
+
+.birthday {background-color: orangered;}
+.soon { background-color: lightgreen;}
+.month { background-color: yellow;}
 </style>
+<body class="doc">
   <h1>Birthday Manager</h1>
-<hr>
-<div>
-  <h2>Add new Person:</h2>
-  firstname: <input type="text" #firstname/>    lastname: <input type="text" #lastname/> birthday: <input type="date" #birthday> address: <input type="text" #address>
-  <button (click)="onAdd(firstname.value, lastname.value, address.value, birthday.value)">Add</button>
-</div>
-<hr>
-<div>
-  <app-person-detail [persons]="persons"></app-person-detail>
-</div>
+  <hr>
+  <div>
+    <h2>Add new Person:</h2>
+    firstname: <input type="text" #firstname/>    lastname: <input type="text" #lastname/> birthday: <input type="date" #birthday> address: <input type="text" #address>
+    <button (click)="onAdd(firstname.value, lastname.value, birthday.value, address.value)">Add</button>
+  </div>
+  <hr>
+  <div>
+    <table mat-table [dataSource]="personService.persons" class="mat-elevation" style="width: 100%; background-color: darkgray;" >
+    
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef (click)="sortById()"> Id </th>
+        <td mat-cell *matCellDef="let element" [ngClass]="getClass(element)"> {{element.id}} </td>
+      </ng-container>
+    
+      <!-- Firstname Column -->
+      <ng-container matColumnDef="firstname">
+        <th mat-header-cell *matHeaderCellDef (click)="sortByFirstname()"> Firstame </th>
+        <td mat-cell *matCellDef="let element" [ngClass]="getClass(element)"> {{element.firstname}} </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="lastname">
+        <th mat-header-cell *matHeaderCellDef (click)="sortByLastname()"> Lastname </th>
+        <td mat-cell *matCellDef="let element" [ngClass]="getClass(element)"> {{element.lastname}} </td>
+      </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="address" (click)="sortByAddress()">
+        <th mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let element" [ngClass]="getClass(element)"> {{element.address}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="birthday">
+        <th mat-header-cell *matHeaderCellDef> Birthday </th>
+        <td mat-cell *matCellDef="let element" [ngClass]="getClass(element)"> {{element.birthday}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" [ngClass]="getClass(element)"> <img src="../assets/delete_icon.png" width="20" height="20" (click)="onDelete(element)"> </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" [ngClass]="getClass(element)"> <img src="../assets/edit_icon.png" width="20" height="20" (click)="onUpdate(element)"> </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</body>
+  
 
 
 

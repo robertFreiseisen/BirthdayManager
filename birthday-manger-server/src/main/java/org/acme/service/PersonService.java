@@ -43,12 +43,13 @@ public class PersonService {
     // Eine Person löschen
     @Path("delete/{id}")
     @DELETE
-    public Person deletePerson(@PathParam("id") int id) {
+    public List<Person> deletePerson(@PathParam("id") int id) {
         return dbRepo.delete(id);
     }
 
     @Path("deleteAll")
     @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Person> deleteAll(){
         return dbRepo.deleteAll();
     }
@@ -58,7 +59,7 @@ public class PersonService {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Person createPerson(Person person) {
+    public List<Person> createPerson(Person person) {
         return dbRepo.create(person);
     }
 
@@ -67,7 +68,7 @@ public class PersonService {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Person updatePerson(Person person) {
+    public List<Person> updatePerson(Person person) {
 
         return dbRepo.update(person);
     }

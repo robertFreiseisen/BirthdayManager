@@ -4,17 +4,17 @@ GET http://localhost:8080/person/init
 ###
 GET http://localhost:8080/person/findAll
 ###
-GET http://localhost:8080/person/find/1
+GET http://localhost:8080/person/find/2
 ###
-DELETE http://localhost:8080/person/delete/1
+DELETE http://localhost:8080/person/delete/3
 ###
 POST http://localhost:8080/person/create
 Content-Type: application/json
 
 {
   "address": "Austria",
-  "birthday": "2002-11-23",
-  "firstname": "Robert",
+  "birthday": "2000-08-18",
+  "firstname": "Johanna",
   "lastname": "Freiseisen"
 }
 ###
