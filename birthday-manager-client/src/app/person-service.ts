@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class PersonService {
 
   http: HttpClient; 
-  public persons: Person[] = [];
+  public persons: Array<Person> = [];
   url: string = 'http://localhost:8080/person';
 
   constructor(http: HttpClient) {
